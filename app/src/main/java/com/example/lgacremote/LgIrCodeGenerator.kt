@@ -9,14 +9,19 @@ object LgIrCodeGenerator {
     private const val ZERO_SPACE = 550
     private const val FREQUENCY = 38000
 
+    // Extra special codes
+    const val CODE_POWER = 0x88C0051
+    const val CODE_JET = 0x8810003
+    const val CODE_SWING_V = 0x8813149
+    const val CODE_SWING_H = 0x881315A
+    const val CODE_LIGHT = 0x88C00A6
+    const val CODE_ENERGY_SAVING = 0x88C00C8
+
     fun getFrequency() = FREQUENCY
 
     // mode: 0=Cool, 1=Dry, 2=Fan, 3=Auto, 4=Heat
     // fan: 0=Low, 2=Mid, 4=High, 5=Auto
-    fun generateAcCode(powerToggle: Boolean, tempC: Int, mode: Int, fan: Int): Int {
-        if (powerToggle) {
-            return 0x88C0051
-        }
+    fun generateAcCode(tempC: Int, mode: Int, fan: Int): Int {
         val n0 = 8
         val n1 = 8
         val n2 = 0
